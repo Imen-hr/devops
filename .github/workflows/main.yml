@@ -54,3 +54,11 @@ jobs:
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
+      - name: Run the image in a container
+        uses: addnab/docker-run-action@v3
+        with:
+            image: ${{ secrets.DOCKERHUB_USERNAME }}/nodejs-demo:latest
+            run: |
+              echo "runing the docker image"
+              echo "Testing the nodejs  app endpoints"
+              echo ${{ steps.docker_build.outputs.digest }} 
